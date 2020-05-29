@@ -7,22 +7,24 @@ var User = {
 	token: '',
 	init: () => {
 		Socket.on("login-success", (data) => {
+			console.log("login-success processed");
 			console.log(data);
-			this.id = data.user.id;
-			this.name = data.user.name;
-			this.firstRun = data.user.firstRun;
-			this.hasChar = data.user.hasChar;
-			this.chat = data.user.chat;
-			this.token = data.token;
 			
-			localStorage.setItem('userId', this.id);
-			localStorage.setItem('userName', this.name);
-			localStorage.setItem('userFirstRun', this.firstRun);
-			localStorage.setItem('userHasChar', this.hasChar);
-			localStorage.setItem('userChat', this.chat);
-			localStorage.setItem('userToken', this.token);
-			console.log(this);
-			setCookie('uid', this.id, 365);
+			User.id = data.user.id;
+			User.name = data.user.name;
+			User.firstRun = data.user.firstRun;
+			User.hasChar = data.user.hasChar;
+			User.chat = data.user.chat;
+			User.token = data.token;
+			
+			localStorage.setItem('userId', User.id);
+			localStorage.setItem('userName', User.name);
+			localStorage.setItem('userFirstRun', User.firstRun);
+			localStorage.setItem('userHasChar', User.hasChar);
+			localStorage.setItem('userChat', User.chat);
+			localStorage.setItem('userToken', User.token);
+			
+			setCookie('uid', User.id, 365);
 			
 			window.location = "http://"+DC.host+":"+DC.port+"/game";
 		});
@@ -49,20 +51,20 @@ var User = {
 		});
 		
 		Socket.on("user-get-success", (data) => {
-			this.id = data.user.u_id;
-			this.name = data.user.u_name;
-			this.firstRun = data.user.u_first_run;
-			this.hasChar = data.user.u_has_char;
-			this.chat = data.user.u_chat;
-			this.token = data.token;
+			User.id = data.user.u_id;
+			User.name = data.user.u_name;
+			User.firstRun = data.user.u_first_run;
+			User.hasChar = data.user.u_has_char;
+			User.chat = data.user.u_chat;
+			User.token = data.token;
 		});
 	},
 	load: () => {
-		this.id = localStorage.userId;
-		this.name = localStorage.userName;
-		this.firstRun = localStorage.userFirstRun;
-		this.hasChar = localStorage.userHasChar;
-		this.chat = localStorage.userChat;
-		this.token = localStorage.userToken;
+		User.id = localStorage.userId;
+		User.name = localStorage.userName;
+		User.firstRun = localStorage.userFirstRun;
+		User.hasChar = localStorage.userHasChar;
+		User.chat = localStorage.userChat;
+		User.token = localStorage.userToken;
 	}
 };

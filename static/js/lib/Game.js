@@ -35,7 +35,7 @@ let Game = {
 		User.hasChar = parseInt(localStorage.userHasChar);
 		User.chat = parseInt(localStorage.userChat);
 		User.token = localStorage.userToken;
-		
+		console.log(User);
 		Game.start();
     },
     start: function(){

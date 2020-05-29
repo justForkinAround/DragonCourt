@@ -261,8 +261,6 @@ io.on('connection', function(socket){
 							signed: true
 						};
 						
-						User = user;
-						
 						io.emit('login-success', {user: user, token: token});
 					} else {
 						io.emit('login-failed', {redirect: "/login/"});
